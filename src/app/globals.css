@@ -1,3 +1,5 @@
+/* Google Fonts must come first — once Next/PostCSS inlines the imports below, any @import that lands after Tailwind's rules trips "@import rules must precede all rules" (CSS spec). Mirror this @import in any consumer app that installs `sairam-tokens` (registry README documents this). */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
