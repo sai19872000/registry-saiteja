@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# registry-saiteja
 
-## Getting Started
+Hosted [shadcn](https://ui.shadcn.com) registry for **Sai Ram Labs** — cosmic+bookish design tokens and reusable UI blocks.
 
-First, run the development server:
+Live endpoint: `https://registry.saiteja.ai/r/registry.json`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Quick install
+
+### Design tokens (install first)
+
+```sh
+npx shadcn add -r https://registry.saiteja.ai/r/registry.json sairam-tokens
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Individual blocks
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+npx shadcn add -r https://registry.saiteja.ai/r/registry.json status-badge
+npx shadcn add -r https://registry.saiteja.ai/r/registry.json skeleton-block
+npx shadcn add -r https://registry.saiteja.ai/r/registry.json inline-error
+npx shadcn add -r https://registry.saiteja.ai/r/registry.json tab-bar
+npx shadcn add -r https://registry.saiteja.ai/r/registry.json theme-chip
+npx shadcn add -r https://registry.saiteja.ai/r/registry.json pull-quote
+npx shadcn add -r https://registry.saiteja.ai/r/registry.json empty-state
+npx shadcn add -r https://registry.saiteja.ai/r/registry.json card-with-meta
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### All blocks at once
 
-## Learn More
+```sh
+npx shadcn add -r https://registry.saiteja.ai/r/registry.json \
+  sairam-tokens status-badge skeleton-block inline-error tab-bar \
+  theme-chip pull-quote empty-state card-with-meta
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## What's in the registry
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Slug | Type | Description |
+|---|---|---|
+| `sairam-tokens` | style | Fraunces+JetBrains Mono, indigo-violet palette, spacing, motion vars |
+| `status-badge` | component | Pill badge with pulse dot for ingesting/ready/failed states |
+| `skeleton-block` | component | Shimmer placeholder with configurable h/w |
+| `inline-error` | component | Error banner with optional retry + dismiss |
+| `tab-bar` | component | Generic tab bar (generic keys, caller-controlled state) |
+| `theme-chip` | component | Small pill label for tags/categories (mono font) |
+| `pull-quote` | component | Blockquote with left accent border |
+| `empty-state` | component | Display-headline empty state with subtext + action slot |
+| `card-with-meta` | component | Content card with title/meta/cover/actions slots + optional href |
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Local development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```sh
+nvm use   # pins to Node 20 via .nvmrc
+npm ci
+npm run lint
+npm run registry:build   # → public/r/registry.json + per-item JSONs
+node scripts/check-registry-deps.mjs  # verify registryDependencies
+npm run build            # → out/ (static export for CF Pages)
+```
+
+---
+
+## Contributing (adding a new block)
+
+1. Create `registry/default/blocks/<slug>/<slug>.tsx`
+2. Add an entry to `registry.json` (`name`, `type`, `files`, `registryDependencies`)
+3. Add it to `src/app/page.tsx` homepage preview
+4. Push a branch, open a PR — CI gates must pass before merge
+5. Merge → CF Pages auto-deploys
+
+Branch protection requires `ci` status check to pass. No 1-review requirement (one-person org).
+
+---
+
+## Architect spec
+
+`/home/sai/factory/outputs/20260425_144022/architect_shadcn_registry_20260425_144023.md`

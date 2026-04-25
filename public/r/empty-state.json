@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-state",
+  "title": "Empty State",
+  "description": "Display-headline empty state with subtext and optional action slot. Optical-size treatment at 768px+.",
+  "registryDependencies": [
+    "sairam-tokens"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/empty-state/empty-state.tsx",
+      "content": "// Empty state with display headline, subtext, and optional action slot.\n// .sairam-empty-headline gets full optical-size treatment at 768px+.\nimport { type ReactNode } from 'react'\n\nconst emptyHeadlineStyle = `\n@media (min-width: 768px) {\n  .sairam-empty-headline {\n    font-variation-settings: 'opsz' 72;\n  }\n}\n`\n\ninterface EmptyStateProps {\n  headline: string\n  subtext?: string\n  action?: ReactNode\n}\n\nexport function EmptyState({ headline, subtext, action }: EmptyStateProps) {\n  return (\n    <>\n      <style>{emptyHeadlineStyle}</style>\n      <div\n        style={{\n          display: 'flex',\n          flexDirection: 'column',\n          alignItems: 'center',\n          justifyContent: 'center',\n          gap: 'var(--sp-4)',\n          textAlign: 'center',\n          padding: 'var(--sp-12) var(--sp-6)',\n        }}\n      >\n        <h1\n          className=\"sairam-empty-headline\"\n          style={{\n            fontSize: 'clamp(2rem, 5vw, 2.5rem)',\n            fontWeight: 300,\n            lineHeight: 1.1,\n            color: 'var(--fg)',\n          }}\n        >\n          {headline}\n        </h1>\n        {subtext && (\n          <p style={{ fontSize: 'var(--text-body)', color: 'var(--fg-muted)', lineHeight: 'var(--lh-body)' }}>\n            {subtext}\n          </p>\n        )}\n        {action && <div>{action}</div>}\n      </div>\n    </>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/empty-state.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

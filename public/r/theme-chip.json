@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-chip",
+  "title": "Theme Chip",
+  "description": "Small pill label for tags, themes, and categories. Mono font, muted color.",
+  "registryDependencies": [
+    "sairam-tokens"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/theme-chip/theme-chip.tsx",
+      "content": "// Small pill label — for tags, themes, categories.\ninterface ThemeChipProps {\n  label: string\n}\n\nexport function ThemeChip({ label }: ThemeChipProps) {\n  return (\n    <span\n      style={{\n        display: 'inline-block',\n        padding: '2px var(--sp-3)',\n        borderRadius: '999px',\n        border: '1px solid var(--border-strong)',\n        fontSize: 'var(--text-small)',\n        fontFamily: 'var(--font-mono)',\n        color: 'var(--fg-muted)',\n        lineHeight: 'var(--lh-small)',\n        background: 'var(--surface-raised)',\n        userSelect: 'none',\n      }}\n    >\n      {label}\n    </span>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/theme-chip.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

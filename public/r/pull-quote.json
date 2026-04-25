@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pull-quote",
+  "title": "Pull Quote",
+  "description": "Indented blockquote with left accent border in the Sai Ram Labs indigo-violet.",
+  "registryDependencies": [
+    "sairam-tokens"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/pull-quote/pull-quote.tsx",
+      "content": "// Indented blockquote with left accent border.\ninterface PullQuoteProps {\n  text: string\n}\n\nexport function PullQuote({ text }: PullQuoteProps) {\n  return (\n    <blockquote\n      style={{\n        borderLeft: '3px solid var(--accent)',\n        paddingLeft: 'var(--sp-4)',\n        margin: 0,\n        fontStyle: 'italic',\n        fontWeight: 300,\n        color: 'var(--fg)',\n        fontSize: 'var(--text-body)',\n        lineHeight: 'var(--lh-body)',\n      }}\n    >\n      {text}\n    </blockquote>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/pull-quote.tsx"
+    }
+  ],
+  "type": "registry:component"
+}
