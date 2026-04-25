@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tab-bar",
+  "title": "Tab Bar",
+  "description": "Generic tab bar. Pass tabs array with key+label; caller controls active state.",
+  "registryDependencies": [
+    "sairam-tokens"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/tab-bar/tab-bar.tsx",
+      "content": "// Generic tab bar. Pass your own tab keys + labels via the tabs prop.\n// Caller controls active state and change handler.\ninterface Tab<T extends string = string> {\n  key: T\n  label: string\n}\n\ninterface TabBarProps<T extends string = string> {\n  tabs: Tab<T>[]\n  activeTab: T\n  onTabChange: (tab: T) => void\n  ariaLabel?: string\n}\n\nexport function TabBar<T extends string = string>({\n  tabs,\n  activeTab,\n  onTabChange,\n  ariaLabel = 'Tabs',\n}: TabBarProps<T>) {\n  return (\n    <div\n      role=\"tablist\"\n      aria-label={ariaLabel}\n      style={{\n        display: 'flex',\n        borderBottom: '1px solid var(--border)',\n        background: 'var(--surface)',\n        flexShrink: 0,\n      }}\n    >\n      {tabs.map((tab) => {\n        const isActive = tab.key === activeTab\n        return (\n          <button\n            key={tab.key}\n            type=\"button\"\n            role=\"tab\"\n            aria-selected={isActive}\n            aria-controls={`panel-${tab.key}`}\n            id={`tab-${tab.key}`}\n            onClick={() => onTabChange(tab.key)}\n            style={{\n              flex: 1,\n              background: 'none',\n              border: 'none',\n              borderBottom: `2px solid ${isActive ? 'var(--accent)' : 'transparent'}`,\n              padding: 'var(--sp-3) var(--sp-4)',\n              cursor: 'pointer',\n              fontSize: 'var(--text-small)',\n              fontFamily: 'var(--font-primary)',\n              fontWeight: isActive ? 600 : 400,\n              color: isActive ? 'var(--fg)' : 'var(--fg-muted)',\n              transition: `color var(--duration-base) var(--ease-standard),\n                           border-color var(--duration-base) var(--ease-standard)`,\n              marginBottom: '-1px',\n            }}\n          >\n            {tab.label}\n          </button>\n        )\n      })}\n    </div>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/tab-bar.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

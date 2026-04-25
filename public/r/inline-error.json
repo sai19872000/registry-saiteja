@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "inline-error",
+  "title": "Inline Error",
+  "description": "Inline error banner with optional retry and dismiss actions.",
+  "registryDependencies": [
+    "sairam-tokens"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/inline-error/inline-error.tsx",
+      "content": "// Inline error banner with optional retry and dismiss actions.\ninterface InlineErrorProps {\n  message: string\n  onRetry?: () => void\n  dismissible?: boolean\n  onDismiss?: () => void\n}\n\nexport function InlineError({ message, onRetry, dismissible, onDismiss }: InlineErrorProps) {\n  return (\n    <div\n      role=\"alert\"\n      style={{\n        color: 'var(--danger)',\n        fontSize: 'var(--text-small)',\n        lineHeight: 'var(--lh-small)',\n        display: 'flex',\n        alignItems: 'center',\n        gap: 'var(--sp-2)',\n        padding: 'var(--sp-2) var(--sp-3)',\n        background: 'rgba(217, 94, 94, 0.08)',\n        borderRadius: 'var(--r-sm)',\n        border: '1px solid rgba(217, 94, 94, 0.2)',\n      }}\n    >\n      <span style={{ flex: 1 }}>{message}</span>\n      {onRetry && (\n        <button\n          type=\"button\"\n          onClick={onRetry}\n          style={{\n            background: 'none',\n            border: 'none',\n            color: 'var(--accent)',\n            cursor: 'pointer',\n            fontSize: 'var(--text-small)',\n            fontFamily: 'var(--font-primary)',\n            textDecoration: 'underline',\n            padding: 0,\n          }}\n        >\n          Try again\n        </button>\n      )}\n      {dismissible && onDismiss && (\n        <button\n          type=\"button\"\n          onClick={onDismiss}\n          aria-label=\"Dismiss error\"\n          style={{\n            background: 'none',\n            border: 'none',\n            color: 'var(--fg-muted)',\n            cursor: 'pointer',\n            fontSize: 'var(--text-body)',\n            padding: 0,\n            lineHeight: 1,\n          }}\n        >\n          ×\n        </button>\n      )}\n    </div>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/inline-error.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

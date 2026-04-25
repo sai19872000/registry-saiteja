@@ -1,65 +1,128 @@
-import Image from "next/image";
+// Static homepage — lists registry blocks + design tokens.
+// No server components, no route handlers, no revalidate.
+// Static-export compatible (output: 'export' in next.config.ts).
+
+const REGISTRY_URL = "https://registry.saiteja.ai/r/registry.json"
+
+const BLOCKS = [
+  { slug: "sairam-tokens", type: "style", description: "Fraunces+JetBrains Mono, indigo-violet palette, spacing, motion vars" },
+  { slug: "status-badge", type: "component", description: "Pill badge with pulse dot for ingesting/ready/failed states" },
+  { slug: "skeleton-block", type: "component", description: "Shimmer placeholder with configurable height/width" },
+  { slug: "inline-error", type: "component", description: "Error banner with optional retry + dismiss" },
+  { slug: "tab-bar", type: "component", description: "Generic tab bar, caller-controlled active state" },
+  { slug: "theme-chip", type: "component", description: "Small pill label for tags and categories" },
+  { slug: "pull-quote", type: "component", description: "Blockquote with left indigo-violet accent border" },
+  { slug: "empty-state", type: "component", description: "Display-headline empty state with subtext + action slot" },
+  { slug: "card-with-meta", type: "component", description: "Content card with title/meta/cover/actions slots + optional href" },
+]
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--fg)", fontFamily: "var(--font-primary)" }}>
+      <div style={{ maxWidth: 800, margin: "0 auto", padding: "var(--sp-12) var(--sp-6)" }}>
+        {/* Header */}
+        <header style={{ marginBottom: "var(--sp-12)" }}>
+          <h1 style={{ fontSize: "var(--text-h1)", fontWeight: 600, lineHeight: "var(--lh-h1)", marginBottom: "var(--sp-3)" }}>
+            Sai Ram Labs Registry
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p style={{ fontSize: "var(--text-body)", color: "var(--fg-muted)", lineHeight: "var(--lh-body)" }}>
+            Cosmic + bookish design tokens and reusable UI blocks for the factory.
+            Hosted at <code style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-small)", color: "var(--accent)" }}>registry.saiteja.ai</code>.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        </header>
+
+        {/* How to consume */}
+        <section style={{ marginBottom: "var(--sp-12)" }}>
+          <h2 style={{ fontSize: "var(--text-h2)", fontWeight: 600, lineHeight: "var(--lh-h2)", marginBottom: "var(--sp-4)" }}>
+            How to consume
+          </h2>
+          <pre
+            style={{
+              background: "var(--surface-raised)",
+              border: "1px solid var(--border-strong)",
+              borderRadius: "var(--r-md)",
+              padding: "var(--sp-4)",
+              fontFamily: "var(--font-mono)",
+              fontSize: "var(--text-small)",
+              color: "var(--fg)",
+              overflowX: "auto",
+              lineHeight: 1.7,
+            }}
+          >{`# Install tokens first
+npx shadcn add -r ${REGISTRY_URL} sairam-tokens
+
+# Then any block
+npx shadcn add -r ${REGISTRY_URL} status-badge
+npx shadcn add -r ${REGISTRY_URL} card-with-meta
+
+# Or all at once
+npx shadcn add -r ${REGISTRY_URL} \\
+  sairam-tokens status-badge skeleton-block inline-error \\
+  tab-bar theme-chip pull-quote empty-state card-with-meta`}</pre>
+        </section>
+
+        {/* Block listing */}
+        <section>
+          <h2 style={{ fontSize: "var(--text-h2)", fontWeight: 600, lineHeight: "var(--lh-h2)", marginBottom: "var(--sp-6)" }}>
+            Items ({BLOCKS.length})
+          </h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--sp-3)" }}>
+            {BLOCKS.map((block) => (
+              <div
+                key={block.slug}
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: "var(--sp-4)",
+                  background: "var(--surface)",
+                  border: "1px solid var(--border)",
+                  borderRadius: "var(--r-lg)",
+                  padding: "var(--sp-4)",
+                }}
+              >
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "var(--sp-2)", marginBottom: "var(--sp-1)" }}>
+                    <code style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-small)", color: "var(--accent)" }}>
+                      {block.slug}
+                    </code>
+                    <span
+                      style={{
+                        display: "inline-block",
+                        padding: "1px var(--sp-2)",
+                        borderRadius: "999px",
+                        border: "1px solid var(--border-strong)",
+                        fontSize: "var(--text-xs)",
+                        fontFamily: "var(--font-mono)",
+                        color: "var(--fg-dim)",
+                        background: "var(--surface-raised)",
+                      }}
+                    >
+                      {block.type}
+                    </span>
+                  </div>
+                  <p style={{ fontSize: "var(--text-small)", color: "var(--fg-muted)", lineHeight: "var(--lh-small)" }}>
+                    {block.description}
+                  </p>
+                </div>
+                <code
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "var(--text-xs)",
+                    color: "var(--fg-dim)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  npx shadcn add ... {block.slug}
+                </code>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <footer style={{ marginTop: "var(--sp-12)", paddingTop: "var(--sp-6)", borderTop: "1px solid var(--border)", color: "var(--fg-dim)", fontSize: "var(--text-small)" }}>
+          Sai Ram Labs · Writes go through GitHub PR → CI → CF Pages auto-deploy
+        </footer>
+      </div>
     </div>
-  );
+  )
 }

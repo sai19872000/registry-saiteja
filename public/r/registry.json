@@ -1,0 +1,132 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "sairam",
+  "homepage": "https://registry.saiteja.ai",
+  "items": [
+    {
+      "name": "sairam-tokens",
+      "type": "registry:style",
+      "title": "Sai Ram Labs Design Tokens",
+      "description": "Cosmic+bookish baseline: Fraunces+JetBrains Mono, indigo-violet palette, generous spacing, motion vars.",
+      "files": [
+        {
+          "path": "registry/default/styles/sairam-tokens.css",
+          "type": "registry:file",
+          "target": "styles/sairam-tokens.css"
+        }
+      ]
+    },
+    {
+      "name": "status-badge",
+      "type": "registry:component",
+      "title": "Status Badge",
+      "description": "Pill badge mapping status strings (ingesting/ready/failed) to color+pulse config.",
+      "registryDependencies": ["sairam-tokens"],
+      "files": [
+        {
+          "path": "registry/default/blocks/status-badge/status-badge.tsx",
+          "type": "registry:component",
+          "target": "components/status-badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "skeleton-block",
+      "type": "registry:component",
+      "title": "Skeleton Block",
+      "description": "Shimmer skeleton placeholder with configurable height/width. Shimmer keyframes self-contained.",
+      "registryDependencies": ["sairam-tokens"],
+      "files": [
+        {
+          "path": "registry/default/blocks/skeleton-block/skeleton-block.tsx",
+          "type": "registry:component",
+          "target": "components/skeleton-block.tsx"
+        }
+      ]
+    },
+    {
+      "name": "inline-error",
+      "type": "registry:component",
+      "title": "Inline Error",
+      "description": "Inline error banner with optional retry and dismiss actions.",
+      "registryDependencies": ["sairam-tokens"],
+      "files": [
+        {
+          "path": "registry/default/blocks/inline-error/inline-error.tsx",
+          "type": "registry:component",
+          "target": "components/inline-error.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tab-bar",
+      "type": "registry:component",
+      "title": "Tab Bar",
+      "description": "Generic tab bar. Pass tabs array with key+label; caller controls active state.",
+      "registryDependencies": ["sairam-tokens"],
+      "files": [
+        {
+          "path": "registry/default/blocks/tab-bar/tab-bar.tsx",
+          "type": "registry:component",
+          "target": "components/tab-bar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "theme-chip",
+      "type": "registry:component",
+      "title": "Theme Chip",
+      "description": "Small pill label for tags, themes, and categories. Mono font, muted color.",
+      "registryDependencies": ["sairam-tokens"],
+      "files": [
+        {
+          "path": "registry/default/blocks/theme-chip/theme-chip.tsx",
+          "type": "registry:component",
+          "target": "components/theme-chip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pull-quote",
+      "type": "registry:component",
+      "title": "Pull Quote",
+      "description": "Indented blockquote with left accent border in the Sai Ram Labs indigo-violet.",
+      "registryDependencies": ["sairam-tokens"],
+      "files": [
+        {
+          "path": "registry/default/blocks/pull-quote/pull-quote.tsx",
+          "type": "registry:component",
+          "target": "components/pull-quote.tsx"
+        }
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:component",
+      "title": "Empty State",
+      "description": "Display-headline empty state with subtext and optional action slot. Optical-size treatment at 768px+.",
+      "registryDependencies": ["sairam-tokens"],
+      "files": [
+        {
+          "path": "registry/default/blocks/empty-state/empty-state.tsx",
+          "type": "registry:component",
+          "target": "components/empty-state.tsx"
+        }
+      ]
+    },
+    {
+      "name": "card-with-meta",
+      "type": "registry:component",
+      "title": "Card With Meta",
+      "description": "Generic content card with title, meta row, cover image slot, actions row, and optional href link.",
+      "registryDependencies": ["sairam-tokens"],
+      "files": [
+        {
+          "path": "registry/default/blocks/card-with-meta/card-with-meta.tsx",
+          "type": "registry:component",
+          "target": "components/card-with-meta.tsx"
+        }
+      ]
+    }
+  ]
+}
