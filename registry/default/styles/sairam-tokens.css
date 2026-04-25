@@ -1,7 +1,16 @@
 /* Sai Ram Labs design tokens — cosmic+bookish baseline. Lifted from spiritual-reader v1.1. */
 
-/* === FONTS ================================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400&display=swap');
+/*
+ * === FONTS ================================================================
+ * Add this @import to the TOP of your app's root stylesheet (e.g. globals.css),
+ * before any other rules — CSS spec requires @import to precede all rules:
+ *
+ *   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400&display=swap');
+ *
+ * Keeping it out of this file avoids "@import-order" warnings once
+ * tailwind/shadcn imports inline above this file's contents.
+ * Privacy note: this URL fetches from Google Fonts on first load.
+ */
 
 :root {
   /* === COLOR ============================================================== */
