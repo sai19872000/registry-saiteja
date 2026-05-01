@@ -1,17 +1,16 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "skeleton-block",
-  "title": "Skeleton Block",
-  "description": "Shimmer skeleton placeholder with configurable height/width. Shimmer keyframes self-contained.",
+  "title": "Skeleton block",
+  "description": "Shimmer placeholder for inline list/text loaders. For primary loading states, prefer the Aura mark.",
   "registryDependencies": [
     "sairam-tokens"
   ],
   "files": [
     {
       "path": "registry/default/blocks/skeleton-block/skeleton-block.tsx",
-      "content": "// Shimmer skeleton placeholder block.\n// Depends on sairam-tokens for CSS variables.\n// Shimmer keyframes are inlined here rather than in sairam-tokens.css.\nconst shimmerStyle = `\n@keyframes sairam-shimmer {\n  0% { background-position: -200% 0; }\n  100% { background-position: 200% 0; }\n}\n`\n\ninterface SkeletonBlockProps {\n  height?: string\n  width?: string\n  className?: string\n}\n\nexport function SkeletonBlock({ height = '1rem', width = '100%', className = '' }: SkeletonBlockProps) {\n  return (\n    <>\n      <style>{shimmerStyle}</style>\n      <div\n        className={className}\n        style={{\n          height,\n          width,\n          background: 'linear-gradient(90deg, var(--surface-raised) 25%, var(--border-strong) 50%, var(--surface-raised) 75%)',\n          backgroundSize: '200% 100%',\n          animation: 'sairam-shimmer 1.5s ease-in-out infinite',\n          borderRadius: 'var(--r-sm)',\n        }}\n        aria-hidden=\"true\"\n      />\n    </>\n  )\n}\n",
-      "type": "registry:component",
-      "target": "components/skeleton-block.tsx"
+      "content": "// Aura skeleton — shimmer placeholder. The brand prefers the breathing ring\n// for primary loading states; reach for skeleton for inline list/text loaders.\nconst shimmerStyle = `\n@keyframes aura-shimmer {\n  0%   { background-position: -200% 0; }\n  100% { background-position:  200% 0; }\n}\n`\n\ninterface SkeletonBlockProps {\n  height?: string\n  width?: string\n  className?: string\n}\n\nexport function SkeletonBlock({ height = '1rem', width = '100%', className = '' }: SkeletonBlockProps) {\n  return (\n    <>\n      <style>{shimmerStyle}</style>\n      <div\n        className={className}\n        style={{\n          height,\n          width,\n          background:\n            'linear-gradient(90deg, var(--surface) 25%, var(--surface-raised) 50%, var(--surface) 75%)',\n          backgroundSize: '200% 100%',\n          animation: 'aura-shimmer 1.8s ease-in-out infinite',\n          borderRadius: 'var(--r-sm)',\n        }}\n        aria-hidden=\"true\"\n      />\n    </>\n  )\n}\n",
+      "type": "registry:component"
     }
   ],
   "type": "registry:component"

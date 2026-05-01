@@ -1,5 +1,4 @@
-// Generic tab bar. Pass your own tab keys + labels via the tabs prop.
-// Caller controls active state and change handler.
+// Aura tab bar — generic tabs. Mono labels, hairline rule, accent underline.
 interface Tab<T extends string = string> {
   key: T
   label: string
@@ -25,7 +24,7 @@ export function TabBar<T extends string = string>({
       style={{
         display: 'flex',
         borderBottom: '1px solid var(--border)',
-        background: 'var(--surface)',
+        background: 'transparent',
         flexShrink: 0,
       }}
     >
@@ -41,16 +40,16 @@ export function TabBar<T extends string = string>({
             id={`tab-${tab.key}`}
             onClick={() => onTabChange(tab.key)}
             style={{
-              flex: 1,
               background: 'none',
               border: 'none',
-              borderBottom: `2px solid ${isActive ? 'var(--accent)' : 'transparent'}`,
-              padding: 'var(--sp-3) var(--sp-4)',
+              borderBottom: `1px solid ${isActive ? 'var(--accent)' : 'transparent'}`,
+              padding: 'var(--sp-3) var(--sp-6)',
               cursor: 'pointer',
-              fontSize: 'var(--text-small)',
-              fontFamily: 'var(--font-primary)',
-              fontWeight: isActive ? 600 : 400,
-              color: isActive ? 'var(--fg)' : 'var(--fg-muted)',
+              fontSize: 'var(--text-xs)',
+              fontFamily: 'var(--font-mono)',
+              letterSpacing: 'var(--tracking-mono)',
+              textTransform: 'uppercase',
+              color: isActive ? 'var(--accent)' : 'var(--fg-muted)',
               transition: `color var(--duration-base) var(--ease-standard),
                            border-color var(--duration-base) var(--ease-standard)`,
               marginBottom: '-1px',

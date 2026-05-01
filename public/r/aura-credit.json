@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aura-credit",
+  "title": "Aura made-by credit",
+  "description": "Inheritance hook #1 — the footer mark. 'quietly forged at saiteja.ai' with the breathing mark beside it. Drop in every shipped factory app's footer.",
+  "registryDependencies": [
+    "sairam-tokens",
+    "aura-mark"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/aura-credit/aura-credit.tsx",
+      "content": "// Aura made-by credit — the footer mark every factory app must carry.\n//\n// One of the four inheritance hooks. Drop this in the footer of any shipped\n// app to carry the brand quietly. Pairs with the console signature\n// (printed at app boot via /scripts/aura-boot.ts) to close the loop.\nimport { AuraMark } from '../aura-mark/aura-mark'\n\ninterface AuraCreditProps {\n  /** Defaults to https://saiteja.ai */\n  href?: string\n}\n\nexport function AuraCredit({ href = 'https://saiteja.ai' }: AuraCreditProps) {\n  return (\n    <a\n      href={href}\n      style={{\n        display: 'inline-flex',\n        alignItems: 'center',\n        gap: 'var(--sp-2)',\n        fontFamily: 'var(--font-mono)',\n        fontSize: 'var(--text-xs)',\n        letterSpacing: 'var(--tracking-mono)',\n        textTransform: 'lowercase',\n        color: 'var(--fg-dim)',\n        textDecoration: 'none',\n        transition: 'color var(--duration-fast) var(--ease-standard)',\n      }}\n      onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--accent)' }}\n      onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--fg-dim)' }}\n    >\n      <AuraMark size={14} state=\"still\" />\n      quietly forged at saiteja.ai\n    </a>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

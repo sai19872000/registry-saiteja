@@ -1,131 +1,130 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "sairam",
+  "name": "saiteja-aura",
   "homepage": "https://registry.saiteja.ai",
+  "description": "Aura — the saiteja.ai design system. A small, opinionated set of tokens, blocks, and inheritance hooks for building 'quietly forged' interfaces.",
+  "version": "0.2.0",
   "items": [
     {
       "name": "sairam-tokens",
       "type": "registry:style",
-      "title": "Sai Ram Labs Design Tokens",
-      "description": "Cosmic+bookish baseline: Fraunces+JetBrains Mono, indigo-violet palette, generous spacing, motion vars.",
+      "title": "Aura tokens",
+      "description": "CSS custom properties for color, type, spacing, motion, and radius. The foundation every other Aura block depends on. Adds @keyframes aura-breathe and pulse-dot. NOTE: Geist font @import must be added manually to your root stylesheet — comment at top of file shows the line.",
       "files": [
         {
           "path": "registry/default/styles/sairam-tokens.css",
-          "type": "registry:file",
-          "target": "styles/sairam-tokens.css"
+          "type": "registry:style",
+          "target": "app/globals.css"
         }
+      ]
+    },
+    {
+      "name": "aura-mark",
+      "type": "registry:component",
+      "title": "Aura mark (breathing ring)",
+      "description": "The brand mark. Three concentric circles, innermost breathing on a 4s sine. Use as splash, footer, or one status indicator.",
+      "registryDependencies": ["sairam-tokens"],
+      "files": [
+        { "path": "registry/default/blocks/aura-mark/aura-mark.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "aura-credit",
+      "type": "registry:component",
+      "title": "Aura made-by credit",
+      "description": "Inheritance hook #1 — the footer mark. 'quietly forged at saiteja.ai' with the breathing mark beside it. Drop in every shipped factory app's footer.",
+      "registryDependencies": ["sairam-tokens", "aura-mark"],
+      "files": [
+        { "path": "registry/default/blocks/aura-credit/aura-credit.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "aura-boot",
+      "type": "registry:lib",
+      "title": "Aura console signature",
+      "description": "Inheritance hook #2 — print the Aura signature in DevTools at app boot. Idempotent. Call once at your earliest client-side entry.",
+      "files": [
+        { "path": "registry/default/scripts/aura-boot.ts", "type": "registry:lib", "target": "lib/aura-boot.ts" }
       ]
     },
     {
       "name": "status-badge",
       "type": "registry:component",
-      "title": "Status Badge",
-      "description": "Pill badge mapping status strings (ingesting/ready/failed) to color+pulse config.",
+      "title": "Status badge",
+      "description": "Mono pill mapping status strings (live, building, ready, idle, reviewing, failed) to color + breathing dot. Extend the CONFIG map for new statuses.",
       "registryDependencies": ["sairam-tokens"],
       "files": [
-        {
-          "path": "registry/default/blocks/status-badge/status-badge.tsx",
-          "type": "registry:component",
-          "target": "components/status-badge.tsx"
-        }
+        { "path": "registry/default/blocks/status-badge/status-badge.tsx", "type": "registry:component" }
       ]
     },
     {
       "name": "skeleton-block",
       "type": "registry:component",
-      "title": "Skeleton Block",
-      "description": "Shimmer skeleton placeholder with configurable height/width. Shimmer keyframes self-contained.",
+      "title": "Skeleton block",
+      "description": "Shimmer placeholder for inline list/text loaders. For primary loading states, prefer the Aura mark.",
       "registryDependencies": ["sairam-tokens"],
       "files": [
-        {
-          "path": "registry/default/blocks/skeleton-block/skeleton-block.tsx",
-          "type": "registry:component",
-          "target": "components/skeleton-block.tsx"
-        }
+        { "path": "registry/default/blocks/skeleton-block/skeleton-block.tsx", "type": "registry:component" }
       ]
     },
     {
       "name": "inline-error",
       "type": "registry:component",
-      "title": "Inline Error",
-      "description": "Inline error banner with optional retry and dismiss actions.",
+      "title": "Inline error",
+      "description": "Calm warning banner. Soft red wash with a 2px left rule. Optional retry + dismiss.",
       "registryDependencies": ["sairam-tokens"],
       "files": [
-        {
-          "path": "registry/default/blocks/inline-error/inline-error.tsx",
-          "type": "registry:component",
-          "target": "components/inline-error.tsx"
-        }
+        { "path": "registry/default/blocks/inline-error/inline-error.tsx", "type": "registry:component" }
       ]
     },
     {
       "name": "tab-bar",
       "type": "registry:component",
-      "title": "Tab Bar",
-      "description": "Generic tab bar. Pass tabs array with key+label; caller controls active state.",
+      "title": "Tab bar",
+      "description": "Generic tabs. Mono labels, hairline rule, accent underline on active.",
       "registryDependencies": ["sairam-tokens"],
       "files": [
-        {
-          "path": "registry/default/blocks/tab-bar/tab-bar.tsx",
-          "type": "registry:component",
-          "target": "components/tab-bar.tsx"
-        }
+        { "path": "registry/default/blocks/tab-bar/tab-bar.tsx", "type": "registry:component" }
       ]
     },
     {
       "name": "theme-chip",
       "type": "registry:component",
-      "title": "Theme Chip",
-      "description": "Small pill label for tags, themes, and categories. Mono font, muted color.",
+      "title": "Theme chip",
+      "description": "Tiny mono pill for tags / categories.",
       "registryDependencies": ["sairam-tokens"],
       "files": [
-        {
-          "path": "registry/default/blocks/theme-chip/theme-chip.tsx",
-          "type": "registry:component",
-          "target": "components/theme-chip.tsx"
-        }
+        { "path": "registry/default/blocks/theme-chip/theme-chip.tsx", "type": "registry:component" }
       ]
     },
     {
       "name": "pull-quote",
       "type": "registry:component",
-      "title": "Pull Quote",
-      "description": "Indented blockquote with left accent border in the Sai Ram Labs indigo-violet.",
+      "title": "Pull quote",
+      "description": "Display italic 200, accent left rule. Use sparingly — one per page.",
       "registryDependencies": ["sairam-tokens"],
       "files": [
-        {
-          "path": "registry/default/blocks/pull-quote/pull-quote.tsx",
-          "type": "registry:component",
-          "target": "components/pull-quote.tsx"
-        }
+        { "path": "registry/default/blocks/pull-quote/pull-quote.tsx", "type": "registry:component" }
       ]
     },
     {
       "name": "empty-state",
       "type": "registry:component",
-      "title": "Empty State",
-      "description": "Display-headline empty state with subtext and optional action slot. Optical-size treatment at 768px+.",
+      "title": "Empty state",
+      "description": "Display headline (with optional italic phrase), lede, optional action. The 'voice' check — if the headline doesn't sound like a soft rotation, rewrite it.",
       "registryDependencies": ["sairam-tokens"],
       "files": [
-        {
-          "path": "registry/default/blocks/empty-state/empty-state.tsx",
-          "type": "registry:component",
-          "target": "components/empty-state.tsx"
-        }
+        { "path": "registry/default/blocks/empty-state/empty-state.tsx", "type": "registry:component" }
       ]
     },
     {
       "name": "card-with-meta",
       "type": "registry:component",
-      "title": "Card With Meta",
-      "description": "Generic content card with title, meta row, cover image slot, actions row, and optional href link.",
+      "title": "Card with meta",
+      "description": "The standard plate. Mono crumb above title, hairline border at rest, accent border on hover.",
       "registryDependencies": ["sairam-tokens"],
       "files": [
-        {
-          "path": "registry/default/blocks/card-with-meta/card-with-meta.tsx",
-          "type": "registry:component",
-          "target": "components/card-with-meta.tsx"
-        }
+        { "path": "registry/default/blocks/card-with-meta/card-with-meta.tsx", "type": "registry:component" }
       ]
     }
   ]

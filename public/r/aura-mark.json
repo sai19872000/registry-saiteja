@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aura-mark",
+  "title": "Aura mark (breathing ring)",
+  "description": "The brand mark. Three concentric circles, innermost breathing on a 4s sine. Use as splash, footer, or one status indicator.",
+  "registryDependencies": [
+    "sairam-tokens"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/aura-mark/aura-mark.tsx",
+      "content": "// Aura mark — the breathing ring. The single canonical brand visual.\n//\n// Three concentric circles, the innermost breathing on a 4s sine.\n// Use this as splash, footer, or one status indicator. NEVER as decoration.\n//\n// The brand has no spinner — loading is the breathing ring.\ninterface AuraMarkProps {\n  size?: number\n  color?: string\n  /** 'breathing' (default) | 'still' (for reduced-motion contexts) */\n  state?: 'breathing' | 'still'\n  className?: string\n}\n\nexport function AuraMark({\n  size = 24,\n  color = 'var(--accent)',\n  state = 'breathing',\n  className = '',\n}: AuraMarkProps) {\n  return (\n    <svg\n      className={className}\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      role=\"img\"\n      aria-label=\"saiteja.ai\"\n    >\n      <circle cx=\"12\" cy=\"12\" r=\"10\" stroke={color} strokeWidth=\".4\" opacity=\".4\" />\n      <circle cx=\"12\" cy=\"12\" r=\"6\"  stroke={color} strokeWidth=\".4\" opacity=\".7\" />\n      <circle\n        cx=\"12\"\n        cy=\"12\"\n        r=\"3\"\n        fill={color}\n        style={{\n          transformOrigin: 'center',\n          animation: state === 'breathing' ? 'aura-breathe 4s ease-in-out infinite' : 'none',\n          opacity: state === 'still' ? 0.85 : undefined,\n        }}\n      />\n    </svg>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}
