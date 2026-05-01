@@ -1,10 +1,9 @@
-// Shimmer skeleton placeholder block.
-// Depends on sairam-tokens for CSS variables.
-// Shimmer keyframes are inlined here rather than in sairam-tokens.css.
+// Aura skeleton — shimmer placeholder. The brand prefers the breathing ring
+// for primary loading states; reach for skeleton for inline list/text loaders.
 const shimmerStyle = `
-@keyframes sairam-shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+@keyframes aura-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
 }
 `
 
@@ -23,9 +22,10 @@ export function SkeletonBlock({ height = '1rem', width = '100%', className = '' 
         style={{
           height,
           width,
-          background: 'linear-gradient(90deg, var(--surface-raised) 25%, var(--border-strong) 50%, var(--surface-raised) 75%)',
+          background:
+            'linear-gradient(90deg, var(--surface) 25%, var(--surface-raised) 50%, var(--surface) 75%)',
           backgroundSize: '200% 100%',
-          animation: 'sairam-shimmer 1.5s ease-in-out infinite',
+          animation: 'aura-shimmer 1.8s ease-in-out infinite',
           borderRadius: 'var(--r-sm)',
         }}
         aria-hidden="true"

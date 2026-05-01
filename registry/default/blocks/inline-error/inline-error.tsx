@@ -1,4 +1,4 @@
-// Inline error banner with optional retry and dismiss actions.
+// Aura inline error — calm warning banner with optional retry + dismiss.
 interface InlineErrorProps {
   message: string
   onRetry?: () => void
@@ -11,16 +11,16 @@ export function InlineError({ message, onRetry, dismissible, onDismiss }: Inline
     <div
       role="alert"
       style={{
-        color: 'var(--danger)',
+        color: 'var(--fg)',
         fontSize: 'var(--text-small)',
         lineHeight: 'var(--lh-small)',
         display: 'flex',
         alignItems: 'center',
-        gap: 'var(--sp-2)',
-        padding: 'var(--sp-2) var(--sp-3)',
-        background: 'rgba(217, 94, 94, 0.08)',
-        borderRadius: 'var(--r-sm)',
-        border: '1px solid rgba(217, 94, 94, 0.2)',
+        gap: 'var(--sp-3)',
+        padding: 'var(--sp-3) var(--sp-4)',
+        background: 'rgba(255, 107, 107, 0.06)',
+        borderRadius: 'var(--r-md)',
+        borderLeft: '2px solid var(--danger)',
       }}
     >
       <span style={{ flex: 1 }}>{message}</span>
@@ -33,20 +33,21 @@ export function InlineError({ message, onRetry, dismissible, onDismiss }: Inline
             border: 'none',
             color: 'var(--accent)',
             cursor: 'pointer',
-            fontSize: 'var(--text-small)',
-            fontFamily: 'var(--font-primary)',
-            textDecoration: 'underline',
+            fontSize: 'var(--text-xs)',
+            fontFamily: 'var(--font-mono)',
+            letterSpacing: 'var(--tracking-mono)',
+            textTransform: 'uppercase',
             padding: 0,
           }}
         >
-          Try again
+          retry
         </button>
       )}
       {dismissible && onDismiss && (
         <button
           type="button"
           onClick={onDismiss}
-          aria-label="Dismiss error"
+          aria-label="Dismiss"
           style={{
             background: 'none',
             border: 'none',

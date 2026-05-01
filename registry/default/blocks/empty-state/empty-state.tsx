@@ -1,54 +1,59 @@
-// Empty state with display headline, subtext, and optional action slot.
-// .sairam-empty-headline gets full optical-size treatment at 768px+.
+// Aura empty state — display headline + lede + optional action.
 import { type ReactNode } from 'react'
-
-const emptyHeadlineStyle = `
-@media (min-width: 768px) {
-  .sairam-empty-headline {
-    font-variation-settings: 'opsz' 72;
-  }
-}
-`
 
 interface EmptyStateProps {
   headline: string
+  italic?: string       // optional italic phrase appended to headline (one soft beat)
   subtext?: string
   action?: ReactNode
 }
 
-export function EmptyState({ headline, subtext, action }: EmptyStateProps) {
+export function EmptyState({ headline, italic, subtext, action }: EmptyStateProps) {
   return (
-    <>
-      <style>{emptyHeadlineStyle}</style>
-      <div
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 'var(--sp-4)',
+        textAlign: 'center',
+        padding: 'var(--sp-16) var(--sp-6)',
+      }}
+    >
+      <h1
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 'var(--sp-4)',
-          textAlign: 'center',
-          padding: 'var(--sp-12) var(--sp-6)',
+          fontSize: 'clamp(2rem, 5vw, 3rem)',
+          fontWeight: 300,
+          lineHeight: 'var(--lh-h1)',
+          letterSpacing: 'var(--tracking-display)',
+          color: 'var(--fg)',
+          maxWidth: '24ch',
         }}
       >
-        <h1
-          className="sairam-empty-headline"
+        {headline}
+        {italic && (
+          <>
+            {' '}
+            <em style={{ fontWeight: 200, fontStyle: 'italic', color: 'var(--fg-muted)' }}>
+              {italic}
+            </em>
+          </>
+        )}
+      </h1>
+      {subtext && (
+        <p
           style={{
-            fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-            fontWeight: 300,
-            lineHeight: 1.1,
-            color: 'var(--fg)',
+            fontSize: 'var(--text-body)',
+            color: 'var(--fg-muted)',
+            lineHeight: 'var(--lh-body)',
+            maxWidth: '50ch',
           }}
         >
-          {headline}
-        </h1>
-        {subtext && (
-          <p style={{ fontSize: 'var(--text-body)', color: 'var(--fg-muted)', lineHeight: 'var(--lh-body)' }}>
-            {subtext}
-          </p>
-        )}
-        {action && <div>{action}</div>}
-      </div>
-    </>
+          {subtext}
+        </p>
+      )}
+      {action && <div style={{ marginTop: 'var(--sp-4)' }}>{action}</div>}
+    </div>
   )
 }

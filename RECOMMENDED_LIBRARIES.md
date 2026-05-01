@@ -16,6 +16,14 @@ something else"). Document the reason.
 `https://raw.githubusercontent.com/sai19872000/registry-saiteja/main/RECOMMENDED_LIBRARIES.md`
 or the deployed registry site. Update via PR; revisit quarterly.
 
+**Pairs with Aura** — the saiteja.ai design system (tokens + 12
+components) lives in this same repo. Agents must install Aura tokens +
+the four inheritance hooks (`aura-mark`, `aura-credit`, `aura-boot`,
+selection) BEFORE reaching for category libraries below. See
+[`AGENT.md`](./AGENT.md) and [`SKILL.md`](./SKILL.md) for the install
+order. Aura covers the brand surface; this list covers everything else
+(maps / charts / animation / etc.).
+
 ---
 
 ## Maps & geo viz

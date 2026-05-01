@@ -2,18 +2,19 @@
 // No server components, no route handlers, no revalidate.
 // Static-export compatible (output: 'export' in next.config.ts).
 
-const REGISTRY_URL = "https://registry.saiteja.ai/r/registry.json"
-
 const BLOCKS = [
-  { slug: "sairam-tokens", type: "style", description: "Fraunces+JetBrains Mono, indigo-violet palette, spacing, motion vars" },
-  { slug: "status-badge", type: "component", description: "Pill badge with pulse dot for ingesting/ready/failed states" },
-  { slug: "skeleton-block", type: "component", description: "Shimmer placeholder with configurable height/width" },
-  { slug: "inline-error", type: "component", description: "Error banner with optional retry + dismiss" },
-  { slug: "tab-bar", type: "component", description: "Generic tab bar, caller-controlled active state" },
-  { slug: "theme-chip", type: "component", description: "Small pill label for tags and categories" },
-  { slug: "pull-quote", type: "component", description: "Blockquote with left indigo-violet accent border" },
-  { slug: "empty-state", type: "component", description: "Display-headline empty state with subtext + action slot" },
-  { slug: "card-with-meta", type: "component", description: "Content card with title/meta/cover/actions slots + optional href" },
+  { slug: "sairam-tokens", type: "style", description: "Aura tokens — navy-ink + periwinkle palette, Geist, three motion timings, aura-breathe keyframe" },
+  { slug: "aura-mark", type: "component", description: "Breathing ring — the brand's single canonical visual (signature hook)" },
+  { slug: "aura-credit", type: "component", description: "Footer mark — quietly forged at saiteja.ai (inheritance hook #1)" },
+  { slug: "aura-boot", type: "lib", description: "Console-signature printer for app boot (inheritance hook #2)" },
+  { slug: "status-badge", type: "component", description: "Mono pill — live / building / ready / idle / reviewing / failed with pulse dot" },
+  { slug: "skeleton-block", type: "component", description: "Shimmer placeholder for inline loaders" },
+  { slug: "inline-error", type: "component", description: "Calm warning banner with soft red wash + 2px left rule" },
+  { slug: "tab-bar", type: "component", description: "Mono-label tabs, caller-controlled active state" },
+  { slug: "theme-chip", type: "component", description: "Tag pill" },
+  { slug: "pull-quote", type: "component", description: "Display italic quote with left accent border" },
+  { slug: "empty-state", type: "component", description: "Empty surface with one italic + action slot" },
+  { slug: "card-with-meta", type: "component", description: "The standard plate — title / meta / cover / actions, optional href" },
 ]
 
 export default function Home() {
@@ -22,11 +23,11 @@ export default function Home() {
       <div style={{ maxWidth: 800, margin: "0 auto", padding: "var(--sp-12) var(--sp-6)" }}>
         {/* Header */}
         <header style={{ marginBottom: "var(--sp-12)" }}>
-          <h1 style={{ fontSize: "var(--text-h1)", fontWeight: 600, lineHeight: "var(--lh-h1)", marginBottom: "var(--sp-3)" }}>
-            Sai Ram Labs Registry
+          <h1 style={{ fontSize: "var(--text-h1)", fontWeight: 300, lineHeight: "var(--lh-h1)", marginBottom: "var(--sp-3)", letterSpacing: "var(--tracking-display)" }}>
+            saiteja-aura
           </h1>
           <p style={{ fontSize: "var(--text-body)", color: "var(--fg-muted)", lineHeight: "var(--lh-body)" }}>
-            Cosmic + bookish design tokens and reusable UI blocks for the factory.
+            <em style={{ fontWeight: 200 }}>quietly forged</em> — the saiteja.ai design system. Tokens, components, and the four signature inheritance hooks every factory app stamps in.
             Hosted at <code style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-small)", color: "var(--accent)" }}>registry.saiteja.ai</code>.
           </p>
         </header>
@@ -48,17 +49,18 @@ export default function Home() {
               overflowX: "auto",
               lineHeight: 1.7,
             }}
-          >{`# Install tokens first
-npx shadcn add -r ${REGISTRY_URL} sairam-tokens
+          >{`# Tokens first — every other block depends on them
+npx shadcn@latest add https://registry.saiteja.ai/r/sairam-tokens.json
 
-# Then any block
-npx shadcn add -r ${REGISTRY_URL} status-badge
-npx shadcn add -r ${REGISTRY_URL} card-with-meta
+# The four signature hooks (must be wired in every factory app)
+npx shadcn@latest add https://registry.saiteja.ai/r/aura-mark.json
+npx shadcn@latest add https://registry.saiteja.ai/r/aura-credit.json
+npx shadcn@latest add https://registry.saiteja.ai/r/aura-boot.json
+# (selection color comes free with the tokens)
 
-# Or all at once
-npx shadcn add -r ${REGISTRY_URL} \\
-  sairam-tokens status-badge skeleton-block inline-error \\
-  tab-bar theme-chip pull-quote empty-state card-with-meta`}</pre>
+# Then any block you need
+npx shadcn@latest add https://registry.saiteja.ai/r/status-badge.json
+npx shadcn@latest add https://registry.saiteja.ai/r/card-with-meta.json`}</pre>
         </section>
 
         {/* Block listing */}

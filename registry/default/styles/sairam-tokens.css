@@ -1,48 +1,55 @@
-/* Sai Ram Labs design tokens — cosmic+bookish baseline. Lifted from spiritual-reader v1.1. */
-
-/*
+/* ============================================================================
+ * Aura — saiteja.ai design tokens (formerly "Sai Ram Labs cosmic+bookish")
+ *
+ * v0.2.0 — Aura · 2026
+ * Replaces the prior Fraunces/indigo-violet token set. The registry slug
+ * `sairam-tokens` is preserved for backwards compatibility, but the values
+ * are now the canonical Aura system.
+ * ==========================================================================
+ *
  * === FONTS ================================================================
- * Add this @import to the TOP of your app's root stylesheet (e.g. globals.css),
+ * Add this @import to the TOP of your app's root stylesheet (globals.css),
  * before any other rules — CSS spec requires @import to precede all rules:
  *
- *   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400&display=swap');
+ *   @import url('https://fonts.googleapis.com/css2?family=Geist:wght@200..700&family=Geist+Mono:wght@400..600&display=swap');
  *
- * Keeping it out of this file avoids "@import-order" warnings once
- * tailwind/shadcn imports inline above this file's contents.
- * Privacy note: this URL fetches from Google Fonts on first load.
+ * Substitution: if you cannot ship Geist, pair Inter (display) + JetBrains
+ * Mono (mono). They are metrics-compatible and visually adjacent.
  */
 
 :root {
-  /* === COLOR ============================================================== */
-  --bg:              #0B0D1A;
-  --surface:         #111328;
-  --surface-raised:  #181B35;
-  --fg:              #EDE9DF;
-  --fg-muted:        #8A8BA8;
-  --fg-dim:          #55576E;
-  --accent:          #B8A8E8;
-  --accent-warm:     #C9A96E;
-  --border:          #1F2244;
-  --border-strong:   #2D3060;
-  --danger:          #D95E5E;
-  --warn:            #C9973A;
-  --ok:              #5A9E7B;
+  /* === COLOR · navy ink + periwinkle ===================================== */
+  --bg:              #0A0E1A;   /* aura-ink — primary background */
+  --surface:         #1B2236;   /* aura-steel — cards, surfaces */
+  --surface-raised:  #252D44;   /* aura-steel-light — hover */
+  --fg:              #F4F1EA;   /* aura-cream — primary text */
+  --fg-muted:        #C9D7E8;   /* aura-mist — secondary text */
+  --fg-dim:          #6E7B95;   /* dim chrome */
+  --accent:          #8AB6FF;   /* aura-accent — periwinkle, signature */
+  --accent-warm:     #FFB347;   /* aura-flare — warning warmth */
+  --border:          rgba(255, 255, 255, 0.08);
+  --border-strong:   rgba(255, 255, 255, 0.14);
+  --danger:          #FF6B6B;
+  --warn:            #FFB347;
+  --ok:              #8AB6FF;   /* live = accent itself */
 
   /* === RADIUS ============================================================= */
   --r-sm:  4px;
-  --r-md:  8px;
-  --r-lg:  16px;
-  --r-xl:  24px;
+  --r-md:  6px;
+  --r-lg:  8px;
+  --r-xl:  16px;
+  --r-pill: 100px;
 
-  /* === SHADOW / ELEVATION ================================================= */
-  --shadow-sm:  0 1px 3px rgba(0, 0, 0, 0.4);
-  --shadow-md:  0 4px 16px rgba(0, 0, 0, 0.5);
-  --shadow-lg:  0 12px 40px rgba(0, 0, 0, 0.6);
+  /* === SHADOW · almost none ============================================== */
+  --shadow-sm:   0 0 0 1px var(--border);          /* a hairline, not a shadow */
+  --shadow-md:   0 0 0 1px var(--border-strong);
+  --shadow-lg:   0 0 0 1px var(--border-strong);   /* the brand does not float */
+  --shadow-glow: 0 0 8px var(--accent);            /* live-state only */
 
   /* === OPACITY ============================================================ */
   --opacity-disabled:  0.38;
   --opacity-overlay:   0.72;
-  --opacity-subtle:    0.08;
+  --opacity-subtle:    0.06;
 
   /* === SPACING ============================================================ */
   --sp-1:  4px;
@@ -56,34 +63,50 @@
   --sp-24: 96px;
 
   /* === TYPOGRAPHY ========================================================= */
-  --font-primary: 'Fraunces', Georgia, serif;
-  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+  --font-primary: 'Geist', 'Inter', system-ui, sans-serif;
+  --font-mono:    'Geist Mono', 'JetBrains Mono', 'Courier New', monospace;
 
-  --text-h1:    2rem;
-  --text-h2:    1.5rem;
-  --text-h3:    1.125rem;
-  --text-body:  1rem;
-  --text-small: 0.875rem;
-  --text-xs:    0.75rem;
+  --text-h1:    3rem;        /* 48px */
+  --text-h2:    1.75rem;     /* 28px */
+  --text-h3:    1.25rem;     /* 20px */
+  --text-body:  1.0625rem;   /* 17px */
+  --text-small: 0.875rem;    /* 14px */
+  --text-xs:    0.6875rem;   /* 11px · mono labels */
 
-  --lh-h1:    1.2;
-  --lh-h2:    1.3;
-  --lh-h3:    1.4;
-  --lh-body:  1.75;
-  --lh-small: 1.6;
-  --lh-xs:    1.5;
+  --lh-h1:    1.05;
+  --lh-h2:    1.2;
+  --lh-h3:    1.3;
+  --lh-body:  1.7;
+  --lh-small: 1.55;
+  --lh-xs:    1.4;
 
-  /* === MOTION ============================================================= */
-  --duration-fast:   120ms;
-  --duration-base:   200ms;
-  --duration-slow:   320ms;
+  --tracking-mono:    0.15em;     /* mono labels */
+  --tracking-display: -0.025em;   /* tight display tracking */
 
-  --ease-standard:   cubic-bezier(0.2, 0, 0, 1);
+  /* === MOTION · three timings only ====================================== */
+  --duration-fast:   120ms;       /* hover, micro-affordance */
+  --duration-base:   220ms;       /* state change, panel open */
+  --duration-slow:   480ms;       /* page enter, modal */
+
+  --ease-standard:   cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
   --ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
 }
 
-/* === REDUCED MOTION ====================================================== */
+/* === LIGHT MODE · opt-in ================================================ */
+[data-theme='light'] {
+  --bg:             #F4F1EA;
+  --surface:        #FAF8F2;
+  --surface-raised: #FFF;
+  --fg:             #0A0E1A;
+  --fg-muted:       #4A5568;
+  --fg-dim:         #94A3B8;
+  --accent:         #3A6CFF;     /* aura-accent-deep on light */
+  --border:         rgba(0, 0, 0, 0.06);
+  --border-strong:  rgba(0, 0, 0, 0.12);
+}
+
+/* === REDUCED MOTION · always wins ====================================== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -110,20 +133,38 @@ body {
   background-color: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-variation-settings: 'opsz' 14;
 }
 
 h1, h2, h3 {
-  font-variation-settings: 'opsz' 20;
+  font-weight: 300;            /* display weight is 300, italic 200 */
+  letter-spacing: var(--tracking-display);
 }
 
-/* Pulse dot animation for StatusBadge */
+h1 em, h2 em, h3 em {
+  font-weight: 200;
+  font-style: italic;
+  color: var(--fg-muted);
+}
+
+/* === THE BREATHING RING — the single canonical animation ================= */
+@keyframes aura-breathe {
+  0%, 100% { transform: scale(0.42); opacity: 0.5; }
+  50%      { transform: scale(1);    opacity: 1;   }
+}
+
+/* === STATUS PULSE — for status-badge =================================== */
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
   50%       { opacity: 0.5; transform: scale(0.8); }
 }
 
-/* Focus ring */
+/* === SELECTION · INHERITANCE HOOK #4 =================================== */
+::selection {
+  background: rgba(138, 182, 255, 0.25);
+  color: var(--accent);
+}
+
+/* === FOCUS RING ========================================================= */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;

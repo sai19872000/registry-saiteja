@@ -1,17 +1,16 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "empty-state",
-  "title": "Empty State",
-  "description": "Display-headline empty state with subtext and optional action slot. Optical-size treatment at 768px+.",
+  "title": "Empty state",
+  "description": "Display headline (with optional italic phrase), lede, optional action. The 'voice' check — if the headline doesn't sound like a soft rotation, rewrite it.",
   "registryDependencies": [
     "sairam-tokens"
   ],
   "files": [
     {
       "path": "registry/default/blocks/empty-state/empty-state.tsx",
-      "content": "// Empty state with display headline, subtext, and optional action slot.\n// .sairam-empty-headline gets full optical-size treatment at 768px+.\nimport { type ReactNode } from 'react'\n\nconst emptyHeadlineStyle = `\n@media (min-width: 768px) {\n  .sairam-empty-headline {\n    font-variation-settings: 'opsz' 72;\n  }\n}\n`\n\ninterface EmptyStateProps {\n  headline: string\n  subtext?: string\n  action?: ReactNode\n}\n\nexport function EmptyState({ headline, subtext, action }: EmptyStateProps) {\n  return (\n    <>\n      <style>{emptyHeadlineStyle}</style>\n      <div\n        style={{\n          display: 'flex',\n          flexDirection: 'column',\n          alignItems: 'center',\n          justifyContent: 'center',\n          gap: 'var(--sp-4)',\n          textAlign: 'center',\n          padding: 'var(--sp-12) var(--sp-6)',\n        }}\n      >\n        <h1\n          className=\"sairam-empty-headline\"\n          style={{\n            fontSize: 'clamp(2rem, 5vw, 2.5rem)',\n            fontWeight: 300,\n            lineHeight: 1.1,\n            color: 'var(--fg)',\n          }}\n        >\n          {headline}\n        </h1>\n        {subtext && (\n          <p style={{ fontSize: 'var(--text-body)', color: 'var(--fg-muted)', lineHeight: 'var(--lh-body)' }}>\n            {subtext}\n          </p>\n        )}\n        {action && <div>{action}</div>}\n      </div>\n    </>\n  )\n}\n",
-      "type": "registry:component",
-      "target": "components/empty-state.tsx"
+      "content": "// Aura empty state — display headline + lede + optional action.\nimport { type ReactNode } from 'react'\n\ninterface EmptyStateProps {\n  headline: string\n  italic?: string       // optional italic phrase appended to headline (one soft beat)\n  subtext?: string\n  action?: ReactNode\n}\n\nexport function EmptyState({ headline, italic, subtext, action }: EmptyStateProps) {\n  return (\n    <div\n      style={{\n        display: 'flex',\n        flexDirection: 'column',\n        alignItems: 'center',\n        justifyContent: 'center',\n        gap: 'var(--sp-4)',\n        textAlign: 'center',\n        padding: 'var(--sp-16) var(--sp-6)',\n      }}\n    >\n      <h1\n        style={{\n          fontSize: 'clamp(2rem, 5vw, 3rem)',\n          fontWeight: 300,\n          lineHeight: 'var(--lh-h1)',\n          letterSpacing: 'var(--tracking-display)',\n          color: 'var(--fg)',\n          maxWidth: '24ch',\n        }}\n      >\n        {headline}\n        {italic && (\n          <>\n            {' '}\n            <em style={{ fontWeight: 200, fontStyle: 'italic', color: 'var(--fg-muted)' }}>\n              {italic}\n            </em>\n          </>\n        )}\n      </h1>\n      {subtext && (\n        <p\n          style={{\n            fontSize: 'var(--text-body)',\n            color: 'var(--fg-muted)',\n            lineHeight: 'var(--lh-body)',\n            maxWidth: '50ch',\n          }}\n        >\n          {subtext}\n        </p>\n      )}\n      {action && <div style={{ marginTop: 'var(--sp-4)' }}>{action}</div>}\n    </div>\n  )\n}\n",
+      "type": "registry:component"
     }
   ],
   "type": "registry:component"

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aura-boot",
+  "title": "Aura console signature",
+  "description": "Inheritance hook #2 — print the Aura signature in DevTools at app boot. Idempotent. Call once at your earliest client-side entry.",
+  "files": [
+    {
+      "path": "registry/default/scripts/aura-boot.ts",
+      "content": "// Aura console signature — print on app boot.\n//\n// One of the four inheritance hooks. Call at app entry (e.g. _app.tsx, layout.tsx,\n// or your earliest client-side script) so the brand mark lands in DevTools.\n//\n// Idempotent: safe to call multiple times in dev/HMR.\nlet printed = false\n\nexport function printAuraSignature() {\n  if (typeof window === 'undefined' || printed) return\n  printed = true\n  console.log(\n    '%c◐ quietly forged at saiteja.ai',\n    'color:#8AB6FF;font-family:monospace;letter-spacing:.15em',\n  )\n}\n",
+      "type": "registry:lib",
+      "target": "lib/aura-boot.ts"
+    }
+  ],
+  "type": "registry:lib"
+}
